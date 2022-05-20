@@ -1,0 +1,10 @@
+gato
+cachorro
+zebra
+macaco
+passaro
+baleia
+tigre
+leao
+urubu
+golfinho
