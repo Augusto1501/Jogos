@@ -1,0 +1,78 @@
+    import random
+
+    print("******************************")
+    print("Bem vindo ao jogo da Forca")
+    print("******************************")
+    print(" ")
+
+    iniciar = 0
+    while iniciar != 1:
+        iniciar = int(input("Digite {1} para começar: "))
+        print(" ")
+        if not iniciar == 1:
+            print("O jogo só inicia ao clicar {1},", "\n", "tente novamente")
+            print(" ")
+
+    opcao = 0
+    opcao = int(input("Escolha uma opção: {1} Frutas, {2} Animais ou {3} Carros: "))
+    if (opcao == 1):
+      arquivo = open("palavras.txt", "r")
+      palavras = []
+    elif(opcao == 2):
+      arquivo = open("animais.txt", "r")
+      palavras = []
+    elif(opcao == 3):
+      arquivo = open("carros.txt", "r")
+      palavras = []
+
+
+
+    for linha in arquivo:
+        linha = linha.strip()
+        palavras.append(linha)
+
+    arquivo.close()
+
+    numero = random.randrange(0, len(palavras))
+    pal_secreta = palavras[numero].upper()
+
+    # print(palavras)
+
+    letras_acertadas = ["_" for letra in pal_secreta]
+
+    enforcou = False
+    acertou = False
+    erros = 0
+
+    print(" ")
+
+    while (not enforcou and not acertou):
+        print(" ")
+        print("___________________")
+        chute = input("Digita uma letra: ")
+        print(" ")
+        chute = chute.strip().upper()
+
+        if (chute in pal_secreta):
+            index = 0
+            for letra in pal_secreta:
+                if (chute.upper() == letra.upper()):
+                    letras_acertadas[index] = letra
+                index = index + 1
+        else:
+            erros += 1
+
+        enforcou = erros == 6
+        acertou = "_" not in letras_acertadas
+        print(letras_acertadas)
+
+    if acertou:
+        print(" ")
+        print("Você ganhou!")
+        print(" ")
+    else:
+        print(" ")
+        print("Você perdeu!")
+        print(" ")
+    print("Fim de jogo")
+    print(" ")
